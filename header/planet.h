@@ -1,3 +1,11 @@
+/*
+Todo:
+* Global variable M is currently unaddressed. Need to define it. It represents sea level from which output heights are defined from after processing.
+** Can't define a global variable in the header, there's some cross-play that needs to happen between the main() and the header.h for that to happen.
+* There's a branch where I tried to make an initialize_vertices() function. Fetch didn't pull it properly. I don't know why.
+* variables r1, r, r3, r4 also undeclared.
+*/
+
 typedef struct Vertex
 {
   double h; /* altitude */
@@ -12,6 +20,14 @@ double dist2(vertex a, vertex b)
   double abx, aby, abz;
   abx = a.x-b.x; aby = a.y-b.y; abz = a.z-b.z;
   return abx*abx+aby*aby+abz*abz;
+}
+
+double rand2(p,q) /* random number generator taking two seeds */
+double p,q;       /* rand2(p,q) = rand2(q,p) is important     */
+{
+  double r;
+  r = (p+3.14159265)*(q+3.14159265);
+  return(2.*(r-(int)r)-1.);
 }
 
 /* For the vertices of the tetrahedron */
